@@ -1,0 +1,29 @@
+$_starType: ( default: 1.7rem, bbs: 1.8rem, total: 3rem );
+ 
+@each $type, $size in $_starType {
+    @if $type != default {
+        .prdStar.type-#{$type} {
+            .prdStarBack {
+                width: $size * 5;
+                height: $size;
+                background-size: $size;
+            }
+ 
+            .prdStarIcon {
+                background-size: $size;
+            }
+        }
+    }
+ 
+    @if $type == total {
+        .prdStar.type-#{$type} {
+            .prdStarScore {
+                margin-left: .6rem;
+                font-size: 3rem;
+                font-weight: $mediumWeight;
+                color: #000;
+                line-height: 120%;
+            }
+        }
+    }
+}
