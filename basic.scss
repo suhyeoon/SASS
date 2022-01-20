@@ -1,29 +1,58 @@
-$_starType: ( default: 1.7rem, bbs: 1.8rem, total: 3rem );
- 
-@each $type, $size in $_starType {
-    @if $type != default {
-        .prdStar.type-#{$type} {
-            .prdStarBack {
-                width: $size * 5;
-                height: $size;
-                background-size: $size;
-            }
- 
-            .prdStarIcon {
-                background-size: $size;
-            }
-        }
+// SASS(Syntactically Awesome Style Sheets)
+// Sass는 CSS 전처리기로, CSS가 동작하기 전에 사용하는 기능이다.
+
+// 보통 언급되는 전처리기는 Less, Sass(Scss), Stylus가 있다.
+// Sass의 3버전에서 새롭게 등장한 Scss는 CSS 구문과 완전히 호환되도록, 새로운 구문을 도입해서 만든 Sass의 모든 기능을 지원하는 CSS의 상위 집합이다.
+// 즉, Scss는 CSS와 거의 같은 문법으로 Sass기능을 지원하다는 말이다.
+
+// 예제 (1)
+// Sass와 Scss의 차이는 {} 중괄호와 ; 세미콜론의 유무 이다.
+// Sass는 선택자의 유효범위를 '들여쓰기'로 구분하고
+// Scss는 {} 중괄호로 범위를 구분한다.  
+
+// Sass
+.list
+  width: 100px
+  float: left
+  li
+    color: red
+    background: url("./image.jpg")
+    &:last-child
+      margin-right: -10px
+
+// Scss
+.list {
+    width: 100px;
+    float: left;
+    li {
+      color: red;
+      background: url("./image.jpg");
+      &:last-child {
+        margin-right: -10px;
+      }
     }
- 
-    @if $type == total {
-        .prdStar.type-#{$type} {
-            .prdStarScore {
-                margin-left: .6rem;
-                font-size: 3rem;
-                font-weight: $mediumWeight;
-                color: #000;
-                line-height: 120%;
-            }
-        }
-    }
-}
+  }
+
+// 예제(2)
+// Sass는 = 과 + 기호로 Mixins 기능을 사용하고
+// Scss는 @mixin 과 @include 로 기능을 사용한다.
+
+// Sass
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+.box
+  +border-radius(10px)
+
+// Scss
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+            border-radius: $radius;
+  }
+  
+  .box { @include border-radius(10px); }
